@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mosin Ali Siddiqui · Full Stack Developer</title>
+<meta name="description" content="Portfolio of Mosin Ali Siddiqui, a Full Stack Developer in Sydney working across MERN, Laravel, automation, cloud and DevOps.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 7'%3E%3Crect width='7' height='7' rx='1' fill='%230d1117'/%3E%3Cpath fill='%233fb950' d='M1 1h1v5H1zM5 1h1v5H5zM2 2h1v1H2zM4 2h1v1H4zM3 3h1v1H3z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-subtle: #f6f8fa;
+    --border: #d1d9e0;
+    --text: #1f2328;
+    --muted: #59636e;
+    --link: #0969da;
+    --topic-bg: #ddf4ff;
+    --green: #1a7f37;
+    --tile: #2da44e;
+    --tile-low: #9be9a8;
+    --tile-bg: #f0f2f4;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117;
+      --bg-subtle: #151b23;
+      --border: #3d444d;
+      --text: #f0f6fc;
+      --muted: #9198a1;
+      --link: #4493f8;
+      --topic-bg: #121d2f;
+      --green: #3fb950;
+      --tile: #3fb950;
+      --tile-low: #006d32;
+      --tile-bg: #212830;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 400 13px/1.7 "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  h1, h2, h3, p, ul { margin: 0; }
+
+  /* Repo-style header */
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--bg-subtle);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .crumb {
+    padding-top: 14px;
+    font-size: 15px;
+  }
+
+  .crumb a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+  }
+
+  .mark {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--tile-bg);
+    fill: var(--tile);
+  }
+
+  .cursor {
+    width: 0.6em;
+    height: 1.1em;
+    margin-left: -4px;
+    background: currentColor;
+    animation: blink 1s steps(1) infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cursor { display: none; }
+  }
+
+  .tabs {
+    display: flex;
+    gap: 20px;
+    margin: 8px 0 -1px;
+    padding: 0;
+    list-style: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tabs a {
+    display: block;
+    padding: 6px 0 10px;
+    color: var(--text);
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+  }
+
+  .tabs a:hover {
+    text-decoration: none;
+    border-bottom-color: var(--border);
+  }
+
+  .count {
+    display: inline-block;
+    min-width: 20px;
+    margin-left: 4px;
+    padding: 0 6px;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+    background: var(--tile-bg);
+    border-radius: 2em;
+  }
+
+  /* Profile layout */
+
+  .layout {
+    display: grid;
+    grid-template-columns: 256px minmax(0, 1fr);
+    gap: 40px;
+    padding-top: 32px;
+    padding-bottom: 64px;
+  }
+
+  .identicon {
+    display: block;
+    width: 88px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--tile-bg);
+    fill: var(--tile);
+  }
+
+  .name {
+    margin-top: 16px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .handle { color: var(--muted); font-size: 15px; }
+
+  .bio { margin-top: 12px; }
+
+  .meta {
+    margin-top: 16px;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+  }
+
+  .meta li {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .meta span { color: var(--muted); }
+  .meta a { overflow-wrap: anywhere; }
+
+  /* Sections */
+
+  section { scroll-margin-top: 112px; }
+  section + section { margin-top: 40px; }
+
+  h2 {
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h2::before {
+    content: "## ";
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* File boxes */
+
+  .file {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .file-name {
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--bg-subtle);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .readme { padding: 20px 24px; }
+
+  /* Career graph */
+
+  .graph-box {
+    margin-bottom: 24px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  .graph-title { margin-bottom: 12px; }
+
+  .graph {
+    display: grid;
+    grid-template-columns: 36px repeat(52, minmax(0, 1fr));
+    gap: 2px;
+    align-items: center;
+    font-size: 10px;
+    line-height: 16px;
+    color: var(--muted);
+  }
+
+  .graph i {
+    aspect-ratio: 1;
+    background: var(--tile-bg);
+    border-radius: 2px;
+  }
+
+  .graph i.high, .legend i.high { background: var(--tile); }
+  .graph i.low, .legend i.low { background: var(--tile-low); }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .legend i {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+
+  .graph i[data-role]:hover { outline: 1px solid var(--text); }
+
+  .tip {
+    position: fixed;
+    z-index: 2;
+    max-width: min(320px, calc(100vw - 16px));
+    padding: 6px 10px;
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--bg);
+    background: var(--text);
+    border-radius: 6px;
+    pointer-events: none;
+  }
+
+  .tip strong { display: block; font-weight: 600; }
+
+  /* Experience log */
+
+  .entry {
+    position: relative;
+    padding-left: 24px;
+    border-left: 2px solid var(--border);
+    margin-left: 4px;
+  }
+
+  .entry + .entry { padding-top: 24px; }
+
+  .entry::before {
+    content: "";
+    position: absolute;
+    left: -11px;
+    top: 2px;
+    width: 20px;
+    height: 20px;
+    background: var(--bg);
+  }
+
+  /* GitHub's milestone octicon */
+  .entry::after {
+    content: "";
+    position: absolute;
+    left: -9px;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    background: var(--muted);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M7.75 0a.75.75 0 0 1 .75.75V3h3.634c.414 0 .814.147 1.13.414l2.07 1.75a1.75 1.75 0 0 1 0 2.672l-2.07 1.75a1.75 1.75 0 0 1-1.13.414H8.5v5.25a.75.75 0 0 1-1.5 0V10H2.75A1.75 1.75 0 0 1 1 8.25v-3.5C1 3.784 1.784 3 2.75 3H7V.75A.75.75 0 0 1 7.75 0Zm4.384 8.5a.25.25 0 0 0 .161-.06l2.07-1.75a.248.248 0 0 0 0-.38l-2.07-1.75a.25.25 0 0 0-.161-.06H2.75a.25.25 0 0 0-.25.25v3.5c0 .138.112.25.25.25h9.384Z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M7.75 0a.75.75 0 0 1 .75.75V3h3.634c.414 0 .814.147 1.13.414l2.07 1.75a1.75 1.75 0 0 1 0 2.672l-2.07 1.75a1.75 1.75 0 0 1-1.13.414H8.5v5.25a.75.75 0 0 1-1.5 0V10H2.75A1.75 1.75 0 0 1 1 8.25v-3.5C1 3.784 1.784 3 2.75 3H7V.75A.75.75 0 0 1 7.75 0Zm4.384 8.5a.25.25 0 0 0 .161-.06l2.07-1.75a.248.248 0 0 0 0-.38l-2.07-1.75a.25.25 0 0 0-.161-.06H2.75a.25.25 0 0 0-.25.25v3.5c0 .138.112.25.25.25h9.384Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  h3 {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .when { color: var(--muted); font-size: 12px; }
+
+  .entry ul {
+    margin-top: 8px;
+    padding-left: 2em;
+    list-style: disc;
+  }
+
+  .entry + .entry::before { top: 26px; }
+  .entry + .entry::after { top: 28px; }
+
+  .entry li + li { margin-top: 0.25em; }
+
+  /* Project list */
+
+  .lede { color: var(--muted); margin-bottom: 4px; }
+
+  .repo { padding: 16px 0; }
+  .repo + .repo { border-top: 1px solid var(--border); }
+  .repo:last-child { padding-bottom: 0; }
+
+  .repo h3 { font-size: 15px; color: var(--link); }
+  .repo-sub { color: var(--muted); font-size: 12px; }
+  .repo-url { font-size: 12px; }
+  .repo p { margin-top: 6px; }
+
+  .topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .topics li {
+    padding: 0 10px;
+    font-size: 11px;
+    line-height: 22px;
+    color: var(--link);
+    background: var(--topic-bg);
+    border-radius: 2em;
+  }
+
+  /* skills.yml */
+
+  .code {
+    padding: 12px 0;
+    counter-reset: line;
+    font-size: 12px;
+  }
+
+  .code div {
+    position: relative;
+    padding: 1px 16px 1px 56px;
+    counter-increment: line;
+  }
+
+  .code div::before {
+    content: counter(line);
+    position: absolute;
+    left: 0;
+    width: 40px;
+    color: var(--muted);
+    text-align: right;
+    user-select: none;
+  }
+
+  .code b { color: var(--green); font-weight: 400; }
+
+  /* Education */
+
+  .edu + .edu { margin-top: 14px; }
+
+  @media (max-width: 767px) {
+    .wrap { padding: 0 16px; }
+
+    .layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 32px;
+      padding-top: 24px;
+    }
+
+    .readme { padding: 16px; }
+    .graph { gap: 1px; font-size: 9px; }
+    .graph i { aspect-ratio: auto; height: 12px; border-radius: 1px; }
+    .code div { padding-left: 40px; }
+    .code div::before { width: 28px; }
+    section { scroll-margin-top: 104px; }
+  }
+
+  @media print {
+    .topbar { display: none; }
+    .layout { display: block; }
+    .identicon { display: none; }
+    aside { margin-bottom: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="crumb"><a href="https://github.com/Mosin0Ali" target="_blank" rel="noopener" aria-label="Mosin0Ali"><svg class="mark" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 1h1v5H1zM5 1h1v5H5zM2 2h1v1H2zM4 2h1v1H4zM3 3h1v1H3z"/></svg><span id="typed">Mosin0Ali</span><span class="cursor" aria-hidden="true"></span></a></div>
+    <nav aria-label="Sections">
+      <ul class="tabs">
+        <li><a href="#readme">README</a></li>
+        <li><a href="#experience">Experience<span class="count">2</span></a></li>
+        <li><a href="#projects">Projects<span class="count">3</span></a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education<span class="count">2</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <aside>
+    <svg class="identicon" viewBox="0 0 7 7" role="img" aria-label="Generated profile identicon">
+      <path d="M1 1h1v5H1zM5 1h1v5H5zM2 2h1v1H2zM4 2h1v1H4zM3 3h1v1H3z"/>
+    </svg>
+    <h1 class="name">Mosin Ali Siddiqui</h1>
+    <div class="handle">Mosin0Ali</div>
+    <p class="bio">Full Stack Developer. MERN, PHP/Laravel, automation, cloud and DevOps.</p>
+    <ul class="meta">
+      <li><span>location</span> Kogarah, NSW</li>
+      <li><span>email</span> <a href="mailto:alimosinali007@gmail.com" target="_blank" rel="noopener">alimosinali007@gmail.com</a></li>
+      <li><span>github</span> <a href="https://github.com/Mosin0Ali" target="_blank" rel="noopener">Mosin0Ali</a></li>
+      <li><span>linkedin</span> <a href="https://www.linkedin.com/in/mosin-ali-siddiqui/" target="_blank" rel="noopener">mosin-ali-siddiqui</a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <section id="readme">
+      <div class="file">
+        <div class="file-name">README.md</div>
+        <div class="readme">
+          <p>Full Stack Developer with nearly four years building production systems at Kantipur Media Group, one of Nepal's largest media organisations. Now a Software Developer Intern at Sydney Tools, automating product listings with AI, while studying a Master of IT in AI.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="graph-box">
+        <h3 class="graph-title" id="graph-title">3.8 years building production systems</h3>
+        <div class="graph" id="graph" role="img" aria-label="Week grid from 2022: Full Stack Developer at Kantipur Media Group from January 2022 to September 2025, Software Developer Intern at Sydney Tools from November 2026 to now."></div>
+        <div class="legend">
+          <span><i class="low"></i>Sydney Tools</span>
+          <span><i class="high"></i>Kantipur Media Group</span>
+        </div>
+      </div>
+      <div class="log">
+        <article class="entry low">
+          <h3>Software Developer Intern, Sydney Tools</h3>
+          <div class="when">Nov 2026 – Present · Roselands, Sydney</div>
+          <ul>
+            <li>Developing an AI-integrated pipeline that automates product listings.</li>
+          </ul>
+        </article>
+        <article class="entry">
+          <h3>Full Stack Developer, Kantipur Media Group</h3>
+          <div class="when">Jan 2022 – Sep 2025 · Kathmandu, Nepal</div>
+          <ul>
+            <li>Built a real-time ETL pipeline for live election reporting. The platform held up at around 5.8 million users in a single day, running on 13 server nodes with heavy caching.</li>
+            <li>Re-engineered the APIs for Hamrobazar, a high-traffic classifieds platform under Kantipur's ownership at the time, migrating from a legacy .NET / IIS stack to PHP on lower-cost infrastructure and cutting monthly hosting spend by roughly 50%.</li>
+            <li>Built an AI-assisted publishing automation system (MERN, OpenAI API) for three media outlets that generates images, captions and hashtags and posts directly to social platforms.</li>
+            <li>Built a multi-gateway paywall (eSewa, Khalti, PayPal, Stripe) for premium content.</li>
+            <li>Set up CI/CD pipelines (GitLab CI, Docker, AWS EC2), cutting deployment time from hours to minutes.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Freelance projects</h2>
+      <p class="lede">Contracted via Robotics Association of Nepal</p>
+      <article class="repo">
+        <h3><a href="https://rakshyak.ran.org.np/" target="_blank" rel="noopener">rakshyak</a></h3>
+        <div class="repo-sub">Real-Time Flood Prediction System</div>
+        <a class="repo-url" href="https://rakshyak.ran.org.np/" target="_blank" rel="noopener">rakshyak.ran.org.np</a>
+        <p>Flood-risk dashboard combining IoT and machine learning. River sensors pushed readings to Firebase; a Python pipeline loaded them into MySQL, ran an ML prediction model, and wrote forecasts back to MySQL for a live dashboard visualising water level, temperature and predicted flood risk.</p>
+        <ul class="topics">
+          <li>laravel</li><li>python</li><li>machine-learning</li><li>iot</li><li>firebase</li><li>mysql</li><li>data-visualisation</li>
+        </ul>
+      </article>
+      <article class="repo">
+        <h3>bems</h3>
+        <div class="repo-sub">Biomedical Equipment Management System</div>
+        <p>Internal platform for government hospitals to track 400+ pieces of equipment, with role-based access for hospital, engineer, provincial and ministry users, real-time chat between roles, and maintenance scheduling.</p>
+        <ul class="topics">
+          <li>laravel</li><li>mysql</li><li>role-based-access-control</li><li>real-time-chat</li><li>maintenance-scheduling</li>
+        </ul>
+      </article>
+      <article class="repo">
+        <h3>adb-sanitation-hackathon</h3>
+        <div class="repo-sub">Registration Portal</div>
+        <p>Online registration portal built for the Asian Development Bank's Sanitation Hackathon.</p>
+      </article>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="file">
+        <div class="file-name">skills.yml</div>
+        <div class="code">
+          <div><b>languages:</b> JavaScript (ES6+), TypeScript, Python, PHP</div>
+          <div><b>frontend:</b> React, jQuery</div>
+          <div><b>backend:</b> Node.js, Express, Laravel, CodeIgniter</div>
+          <div><b>databases:</b> MySQL, MS SQL Server, MongoDB, Firebase</div>
+          <div><b>cloud_devops:</b> AWS, Docker, CI/CD (GitLab CI, GitHub Actions), Git</div>
+          <div><b>apis_architecture:</b> REST, GraphQL, Microservices</div>
+          <div><b>ai:</b> OpenAI API, agentic coding (Claude, Codex)</div>
+          <div><b>automation:</b> AI content publishing, product listing pipelines, ETL and data pipelines</div>
+          <div><b>security:</b> Burp Suite, sqlmap, XSS and SQL injection mitigation</div>
+          <div><b>testing:</b> PHPUnit, Postman</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="edu">
+        <h3>Master of Information Technology (Artificial Intelligence)</h3>
+        <div>ASA Institute of Higher Education, Sydney, NSW</div>
+        <div class="when">In progress, expected Sep 2027</div>
+      </div>
+      <div class="edu">
+        <h3>Bachelor of Engineering, Computer Science</h3>
+        <div>Visvesvaraya Technological University, Bangalore, India</div>
+        <div class="when">2017</div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  // Types the header name once on load.
+  const typeOut = (text, delay, render) => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let length = 0;
+    const tick = () => {
+      render(text.slice(0, ++length));
+      if (length < text.length) setTimeout(tick, delay);
+    };
+    tick();
+  };
+
+  const typed = document.getElementById('typed');
+  typeOut(typed.textContent, 120, (text) => { typed.textContent = text; });
+
+  // Types and erases the browser tab title on a loop.
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const title = document.title;
+    let length = 0;
+    let step = 1;
+    const tick = () => {
+      length += step;
+      document.title = `${title.slice(0, length)}\u00a0_`;
+      if (length === title.length) step = -1;
+      else if (length === 1) step = 1;
+      setTimeout(tick, length === title.length ? 4000 : step > 0 ? 80 : 30);
+    };
+    tick();
+  }
+
+  // One tile per week, lit from the dates in the Experience section.
+  const now = new Date();
+  const roles = [
+    { company: 'Kantipur Media Group', job: 'Full Stack Developer', level: 'high', from: new Date(2022, 0, 1), to: new Date(2025, 8, 30) },
+    { company: 'Sydney Tools', job: 'Software Developer Intern', level: 'low', from: new Date(2026, 10, 1), to: now },
+  ];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const graph = document.getElementById('graph');
+
+  const add = (tag, className, text) => {
+    const el = document.createElement(tag);
+    el.className = className;
+    if (text) el.textContent = text;
+    graph.append(el);
+    return el;
+  };
+
+  const total = roles.reduce((sum, { from, to }) => (
+    sum + (to.getFullYear() - from.getFullYear()) * 12 + to.getMonth() - from.getMonth() + 1
+  ), 0);
+  document.getElementById('graph-title').textContent = `${(total / 12).toFixed(1)} years building production systems`;
+
+  add('span', 'year');
+  months.forEach((month, i) => {
+    add('span', '', month).style.gridColumn = `${2 + Math.round((i * 52) / 12)} / span 4`;
+  });
+
+  for (let year = 2022; year <= now.getFullYear(); year++) {
+    add('span', 'year', String(year));
+    for (let week = 0; week < 52; week++) {
+      const start = new Date(year, 0, 1 + week * 7);
+      const end = new Date(year, 0, 7 + week * 7);
+      const role = roles.find(({ from, to }) => start <= to && end >= from);
+      const tile = add('i', role ? role.level : '');
+      if (role) {
+        const shown = start < role.from ? role.from : start;
+        tile.dataset.role = `${role.job}, ${role.company}`;
+        tile.dataset.when = `${months[shown.getMonth()]} ${shown.getFullYear()}`;
+      }
+    }
+  }
+
+  // Tooltip for lit tiles: role, company and month.
+  const tip = document.createElement('div');
+  tip.className = 'tip';
+  tip.hidden = true;
+  document.body.append(tip);
+
+  const hideTip = () => { tip.hidden = true; };
+
+  graph.addEventListener('pointerover', ({ target }) => {
+    if (!target.dataset.role) return hideTip();
+    const strong = document.createElement('strong');
+    strong.textContent = target.dataset.role;
+    tip.replaceChildren(strong, target.dataset.when);
+    tip.hidden = false;
+    const box = target.getBoundingClientRect();
+    const left = box.left + box.width / 2 - tip.offsetWidth / 2;
+    tip.style.left = `${Math.max(8, Math.min(left, innerWidth - tip.offsetWidth - 8))}px`;
+    tip.style.top = `${box.top - tip.offsetHeight - 6}px`;
+  });
+  graph.addEventListener('pointerleave', ({ pointerType }) => {
+    if (pointerType === 'mouse') hideTip();
+  });
+  document.addEventListener('pointerdown', ({ target }) => {
+    if (!graph.contains(target)) hideTip();
+  });
+  addEventListener('scroll', hideTip, { passive: true });
+</script>
+
+</body>
+</html>
