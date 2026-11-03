@@ -245,16 +245,20 @@
 
   .graph {
     display: grid;
-    grid-template-columns: 36px repeat(52, minmax(0, 1fr));
-    gap: 2px;
+    grid-template-columns: 36px repeat(12, minmax(0, 1fr));
+    gap: 4px 0;
     align-items: center;
+    justify-items: center;
     font-size: 10px;
     line-height: 16px;
     color: var(--muted);
   }
 
+  .graph .year { justify-self: start; }
+
   .graph i {
-    aspect-ratio: 1;
+    width: 16px;
+    height: 16px;
     background: var(--tile-bg);
     border-radius: 2px;
   }
@@ -423,8 +427,8 @@
     }
 
     .readme { padding: 16px; }
-    .graph { gap: 1px; font-size: 9px; }
-    .graph i { aspect-ratio: auto; height: 12px; border-radius: 1px; }
+    .graph { font-size: 9px; }
+    .graph i { width: 14px; height: 14px; }
     .code div { padding-left: 40px; }
     .code div::before { width: 28px; }
     section { scroll-margin-top: 104px; }
@@ -485,7 +489,7 @@
       <h2>Experience</h2>
       <div class="graph-box">
         <h3 class="graph-title" id="graph-title">3.8 years building production systems</h3>
-        <div class="graph" id="graph" role="img" aria-label="Week grid from 2022: Full Stack Developer at Kantipur Media Group from January 2022 to September 2025, Software Developer Intern at Sydney Tools from November 2026 to now."></div>
+        <div class="graph" id="graph" role="img" aria-label="Month grid from 2022: Full Stack Developer at Kantipur Media Group from January 2022 to September 2025, Software Developer Intern at Sydney Tools from November 2026 to now."></div>
         <div class="legend">
           <span><i class="low"></i>Sydney Tools</span>
           <span><i class="high"></i>Kantipur Media Group</span>
@@ -605,7 +609,7 @@
     tick();
   }
 
-  // One tile per week, lit from the dates in the Experience section.
+  // One tile per month, lit from the dates in the Experience section.
   const now = new Date();
   const roles = [
     { company: 'Kantipur Media Group', job: 'Full Stack Developer', level: 'high', from: new Date(2022, 0, 1), to: new Date(2025, 8, 30) },
@@ -628,23 +632,20 @@
   document.getElementById('graph-title').textContent = `${(total / 12).toFixed(1)} years building production systems`;
 
   add('span', 'year');
-  months.forEach((month, i) => {
-    add('span', '', month).style.gridColumn = `${2 + Math.round((i * 52) / 12)} / span 4`;
-  });
+  months.forEach((month) => add('span', '', month));
 
   for (let year = 2022; year <= now.getFullYear(); year++) {
     add('span', 'year', String(year));
-    for (let week = 0; week < 52; week++) {
-      const start = new Date(year, 0, 1 + week * 7);
-      const end = new Date(year, 0, 7 + week * 7);
+    months.forEach((month, i) => {
+      const start = new Date(year, i, 1);
+      const end = new Date(year, i + 1, 0);
       const role = roles.find(({ from, to }) => start <= to && end >= from);
       const tile = add('i', role ? role.level : '');
       if (role) {
-        const shown = start < role.from ? role.from : start;
         tile.dataset.role = `${role.job}, ${role.company}`;
-        tile.dataset.when = `${months[shown.getMonth()]} ${shown.getFullYear()}`;
+        tile.dataset.when = `${month} ${year}`;
       }
-    }
+    });
   }
 
   // Tooltip for lit tiles: role, company and month.
